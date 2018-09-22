@@ -2,6 +2,11 @@
 #include <eosiolib/print.hpp>
 using namespace eosio;
 
+//need pointer 
+//need table containing utility data and number of views and index
+
+
+
 // Smart Contract Name: dato
 // Table struct:
 //   notestruct: multi index table to store the notes
@@ -27,22 +32,22 @@ class datosmart : public eosio::contract {
     }
 
     /// @abi table
-    struct notestruct {
+    struct utildata {
       uint64_t      prim_key;  // primary key
-      account_name  user;      // account name for the user
-      std::string   note;      // the note message
+      std::string   utilitydata;      // the utility data
+      std::int  numremaining;      // the utility data
+      std::string  tokenname;      // the utility data
       uint64_t      timestamp; // the store the last update block time
 
       // primary key
       auto primary_key() const { return prim_key; }
       // secondary key: user
-      account_name get_by_user() const { return user; }
     };
 
     // create a multi-index table and support secondary key
-    typedef eosio::multi_index< N(notestruct), notestruct,
-      indexed_by< N(getbyuser), const_mem_fun<notestruct, account_name, &notestruct::get_by_user> >
-      > notetable;
+    ///typedef eosio::multi_index< N(notestruct), notestruct,
+    //  indexed_by< N(getbyuser), const_mem_fun<notestruct, account_name, &notestruct::get_by_user> >
+    //  > notetable;
 
   public:
     using contract::contract;
@@ -52,29 +57,23 @@ class datosmart : public eosio::contract {
       // to sign the action with the given account
       require_auth( _user );
 
-      //reduce tokens in user account by amount
-      
-      //push into datatable - utility data
-      
-      
+      //reduce tokens in user account by amount     
  
-      // create new / update note depends whether the user account exist or not
-      if (isnewuser(_user)) {
         // insert object
         obj.emplace( _self, [&]( auto& address ) {
-          address.prim_key    = obj.available_primary_key();
-          address.user        = _user;
-          address.note        = _note;
-          address.timestamp   = now();
-        });
-      } else {
-        // get object by secordary key
-        auto notes = obj.get_index<N(getbyuser)>();
-        auto &note = notes.get(_user);
-        // update object
-        obj.modify( note, _self, [&]( auto& address ) {
-          address.note        = _note;
-          address.timestamp   = now();
+          utildata.prim_key    = obj.available_primary_key();
+          utildata.user        = _user;
+          utildata.numremaining    = <TD>;
+          utildata.tokenname    = token.name;
+          utildata.utilitydata   = utilitydata;
+          
+          utildata.timestamp   = now();
+       // insert object
+       // obj.emplace( _self, [&]( auto& address ) {
+       //   address.prim_key    = obj.available_primary_key();
+       //   address.user        = _user;
+       //   address.note        = _note;
+       //   address.timestamp   = now();
         });
       }
     }
