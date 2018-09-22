@@ -1,12 +1,12 @@
-#include <eosiolib/eosio.hpp>
+#<eosiolib/eosio.hpp>
 #include <eosiolib/print.hpp>
 using namespace eosio;
 
-// Smart Contract Name: notechain
+// Smart Contract Name: dato
 // Table struct:
 //   notestruct: multi index table to store the notes
 //     prim_key(uint64): primary key
-//     user(account_name/uint64): account name for the user
+//     user(acco#includeunt_name/uint64): account name for the user
 //     note(string): the note message
 //     timestamp(uint64): the store the last update block time
 // Public method:
@@ -15,7 +15,7 @@ using namespace eosio;
 //   update => put the note into the multi-index table and sign by the given account
 
 // Replace the contract class name when you start your own project
-class notechain : public eosio::contract {
+class datosmart : public eosio::contract {
   private:
     bool isnewuser( account_name user ) {
       notetable noteobj(_self, _self);
@@ -48,12 +48,16 @@ class notechain : public eosio::contract {
     using contract::contract;
 
     /// @abi action
-    void update( account_name _user, std::string& _note ) {
+    void usedato( username _user, token token, amount type?, utilitydata string ) {
       // to sign the action with the given account
       require_auth( _user );
 
-      notetable obj(_self, _self); // code, scope
-
+      //reduce tokens in user account by amount
+      
+      //push into datatable - utility data
+      
+      
+ 
       // create new / update note depends whether the user account exist or not
       if (isnewuser(_user)) {
         // insert object
@@ -74,8 +78,23 @@ class notechain : public eosio::contract {
         });
       }
     }
+  
+    void pullutilitydata( pullername _user, token token) {
+      // to sign the action with the given account
+      require_auth( _user );
+
+      //get pointer to next utilty data
+      
+      //get from data table
+      
+      //reduce view data
+      
+      //move on pointer
+      
+    
+  
 
 };
 
 // specify the contract name, and export a public action: update
-EOSIO_ABI( notechain, (update) )
+EOSIO_ABI( datosmart, (usedato, issuedato, usedato) )
