@@ -1,0 +1,44 @@
+<hmtl>
+<heaD>
+<TITLE>DATO</TITLE>
+<script>
+function resetButtons(){
+  // hide all
+  document.getElementById(‘box1’).style.display = block;
+  document.getElementById(‘box2’).style.display = none;
+  document.getElementById(‘box3’).style.display = none;
+  document.getElementById(‘box4’).style.display = none;
+}
+  
+function launchButton(but){
+  // show new choice
+  document.getElementById(but).style.display = block;
+}
+</script>
+
+<style>
+  p, div { font-face: arial; font-size: 14pt; }
+</style>
+</head>
+
+<body style=background-color:grey;"">
+<div id=“box1” style=“width:600px; height:250px; border:2px solid black” onclick=“launchButton(‘box1’)”><img src=“1.jpg“>
+  <p>DATO - Data Asset Toke Offering</p>
+  <p>Please click in this box</p>
+</div>
+<div id=“box2” style=“width:580px; height:250px; border:2px solid red; display: none” onclick=“launchButton(‘box2’)”><img src=“2.jpg“>
+  <p>Not completed yet</p>
+  <p>Developer 1 did not show up</p>
+</div>
+<div id=“box3” style=“width:560px; height:250px; border:2px solid green; display: none” onclick=“launchButton(‘box3’)”><img src=“3.jpg“>
+  <p>Not completed yet</p>
+  <p>Developer 2 still in bed</p>
+</div>
+<div id=“box4” style=“width:540px; height:250px; border:2px solid blue; display: none” onclick=“launchButton(‘box4’)”><img src=“4.jpg“>
+  <p>Not completed yet</p>
+  <p>Developer 3 - Under Arrest!!!</p>
+</div>
+
+<a href="#" onclick="resetButtons">Reset</a>
+
+</body>
